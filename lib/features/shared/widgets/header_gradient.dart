@@ -364,7 +364,7 @@ class IconHeader extends StatelessWidget {
     super.key, 
     required this.icon, 
     required this.title, 
-    required this.subtitulo, 
+    this.subtitulo = '', 
     this.color1 = Colors.grey, 
     this.color2 = Colors.blueGrey
   });
@@ -389,7 +389,7 @@ class IconHeader extends StatelessWidget {
         ),
         Column(
           children: <Widget> [
-            const SizedBox(height: 55,width: double.infinity,),
+            const SizedBox(height: 60,width: double.infinity,),
             Text(title, style: TextStyle(
               fontSize: 25, 
               color: colorBlanco,
@@ -442,7 +442,7 @@ class _IconHeaderBackground extends StatelessWidget {
       height: 150,
       decoration: BoxDecoration(
         //color: Colors.red,
-        borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(80)),
+        borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(60), bottomRight: Radius.circular(60)),
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,

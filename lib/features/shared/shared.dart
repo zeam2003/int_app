@@ -4,3 +4,6 @@ export 'widgets/custom_text_form_field.dart';
 export 'widgets/custom_filled_button.dart';
 export 'widgets/side_menu.dart';
 export 'widgets/header_gradient.dart';
+export 'widgets/dashboard_menu.dart';
+export 'widgets/middle_card.dart';
+export 'widgets/ticket_summary.dart';

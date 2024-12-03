@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:int_app/features/shared/shared.dart';
-import 'package:int_app/features/shared/widgets/dashboard_menu.dart';
+
 
 class CentralScreen extends StatelessWidget {
   const CentralScreen({super.key});
@@ -26,9 +26,27 @@ class CentralScreen extends StatelessWidget {
       body: const Stack(
         children: [
           _HeaderDashboad(),
-          SizedBox(height: 280,),
+          Positioned(
+            top:130,
+            left:16,
+            right: 16,
+           child: TicketsSummary(),
+          ),
+          Positioned(
+            top: 370,
+            left: 16,
+            right: 16,
+            child: MiddleCard(),
+          ),
+          Positioned(
+            top: 245,
+            left: 0,
+            right: 0,
+            child: DashboardMenu(),
+          ),
+          //SizedBox(height: 280,),
         
-          Expanded(child: DashboardMenu())
+          //Expanded(child: DashboardMenu())
         ],
       )
     );
@@ -61,13 +79,13 @@ class _HeaderInnerDash extends StatelessWidget {
         const IconHeader(
           icon: FontAwesomeIcons.house, 
           title: 'Juan Pelotas', 
-          subtitulo: 'Selecciona una opción para empezar',
+          //subtitulo: 'Selecciona una opción para empezar',
           color2: Color(0xff66a9f2),
           color1: Color(0xff536cf6),
          ),
          Positioned(
           right: 0,
-          top: 46,
+          top:50,
           child: RawMaterialButton(
             onPressed: (){},
             shape: const CircleBorder(),
