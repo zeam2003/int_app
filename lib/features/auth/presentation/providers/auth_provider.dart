@@ -58,14 +58,14 @@ class AuthNotifier extends StateNotifier<AuthState> {
   }
 
   void _setLoggedUser( User user) async {
-    
+    //print('Settings logged user: $user.glpiFriendlyname');
     await keyValueStorageService.setKeyValue('token', user.sessionToken);
     state = state.copyWith(
       user: user,
       errorMessage: '',
       authStatus: AuthStatus.authenticated,
     );
-    
+    //print('Settings logged copy: $user.glpiFriendlyname');
   }
 
   Future<void> logout([String? errorMessage]) async {

@@ -27,7 +27,25 @@ class User {
     }
   );
 
-  
+  @override
+  String toString() {
+    return '''
+    User(
+      validId: $validId,
+      glpiCurrenttime: $glpiCurrenttime,
+      glpiUsemode: $glpiUsemode,
+      glpiID: $glpiID,
+      glpiFriendlyname: $glpiFriendlyname,
+      glpiName: $glpiName,
+      glpiRealname: $glpiRealname,
+      glpiFirstname: $glpiFirstname,
+      glpiActiveprofilename: $glpiActiveprofilename,
+      name: $name,
+      sessionToken: $sessionToken.
+    )
+    ''';
   }
+  
+}
 
 

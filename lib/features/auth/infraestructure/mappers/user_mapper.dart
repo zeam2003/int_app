@@ -6,11 +6,11 @@ class UserMapper {
     glpiCurrenttime: json['glpi_currenttime'] ?? '', 
     glpiUsemode: json['glpi_use_mode'] ?? 0, 
     glpiID: json['glpiID'] ?? 0, 
-    glpiFriendlyname: json['glpiFriendlyname'] ?? '', 
-    glpiName: json['glpiName'] ?? '', 
-    glpiRealname: json['glpiRealname'] ?? '', 
-    glpiFirstname: json['glpiFirstname'] ?? '', 
-    glpiActiveprofilename: json['glpiActiveprofilename']?['name'] ?? '', 
+    glpiFriendlyname: json['glpifriendlyname'] ?? '', 
+    glpiName: json['glpiname'] ?? '', 
+    glpiRealname: json['glpirealname'] ?? '', 
+    glpiFirstname: json['glpifirstname'] ?? '', 
+    glpiActiveprofilename: json['glpiactiveprofilename']?['name'] ?? '', 
     name: json['name'] ?? '', 
     sessionToken: json['session_token'] ?? ''
   );

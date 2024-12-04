@@ -1,16 +1,25 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:int_app/features/auth/domain/entities/user.dart';
+import 'package:int_app/features/auth/presentation/providers/auth_provider.dart';
 import 'package:int_app/features/shared/shared.dart';
 
 
-class CentralScreen extends StatelessWidget {
+class CentralScreen extends ConsumerWidget {
   const CentralScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
 
     final scaffoldKey = GlobalKey<ScaffoldState>();
+
+    final authState= ref.watch(authProvider);
+    
+    final user = authState.user;
+    //print(user?.glpiActiveprofilename);
+    //print(authState);
 
     return Scaffold(
       drawer: SideMenu( scaffoldKey: scaffoldKey ),
@@ -23,9 +32,9 @@ class CentralScreen extends StatelessWidget {
           )
         ],
       ), */
-      body: const Stack(
+      body:  Stack(
         children: [
-          _HeaderDashboad(),
+          _HeaderDashboad(user),
           Positioned(
             top:130,
             left:16,
@@ -54,13 +63,15 @@ class CentralScreen extends StatelessWidget {
 }
 
 class _HeaderDashboad extends StatelessWidget {
-  const _HeaderDashboad();
+  final User? user;
+  const _HeaderDashboad(this.user);
+
   
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
-         _HeaderInnerDash(),
+         _HeaderInnerDash(user:user),
       ]
         
        
@@ -72,16 +83,19 @@ class _HeaderDashboad extends StatelessWidget {
 }
 
 class _HeaderInnerDash extends StatelessWidget {
+  final User? user;
+
+  const _HeaderInnerDash({ this.user});
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        const IconHeader(
+        IconHeader(
           icon: FontAwesomeIcons.house, 
-          title: 'Juan Pelotas', 
+          title: user?.glpiFirstname ?? 'invitado', 
           //subtitulo: 'Selecciona una opción para empezar',
-          color2: Color(0xff66a9f2),
-          color1: Color(0xff536cf6),
+          color2: const Color(0xff66a9f2),
+          color1: const Color(0xff536cf6),
          ),
          Positioned(
           right: 0,
@@ -98,14 +112,4 @@ class _HeaderInnerDash extends StatelessWidget {
 
   }
 
-}
-
-
-class _ProductsView extends StatelessWidget {
-  const _ProductsView();
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(child: Text('Eres genial!'));
-  }
 }
