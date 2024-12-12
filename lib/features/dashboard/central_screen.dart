@@ -12,6 +12,7 @@ class CentralScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final size = MediaQuery.of(context).size;
 
     final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -20,9 +21,95 @@ class CentralScreen extends ConsumerWidget {
     final user = authState.user;
     //print(user?.glpiActiveprofilename);
     //print(authState);
-
     return Scaffold(
-      drawer: SideMenu( scaffoldKey: scaffoldKey ),
+    body: LayoutBuilder(
+      builder: (context, constraints) {
+        final height = constraints.maxHeight;
+        final width = constraints.maxWidth;
+
+        return Column(
+         children: [
+            // Stack para HeaderDashboard y MiddleCard
+            SizedBox(
+              height: height * 0.3, // Espacio combinado para Header y MiddleCard
+              child: Stack(
+                children: [
+                  // HeaderDashboard (ocupa 20% del total de la pantalla)
+                  Positioned.fill(
+                    top: 0,
+                    child: SizedBox(
+                      height: height * 0.2, // Ajusta según tus necesidades
+                      child: _HeaderDashboad(user),
+                    ),
+                  ),
+
+                  // MiddleCard (solapado al HeaderDashboard)
+                  Positioned(
+                    top: height * 0.13, // Ajustar la posición para el solapado
+                    left: width * 0.05,
+                    right: width * 0.05,
+                    child: Container(
+                      height: height * 0.10, // Ajustar la altura según diseño
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(20),
+                        boxShadow:const  [
+                          BoxShadow(
+                            color: Colors.black26,
+                            blurRadius: 10,
+                            offset: Offset(0, 5),
+                          ),
+                        ],
+                      ),
+                      child: const MiddleCard(),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            // TicketSummary - Fijo debajo del MiddleCard
+            Flexible(
+              //flex: 1,
+              
+              child: Padding(
+                padding: EdgeInsets.only(
+                  left: width * 0.05, 
+                  right: height * 0.02,
+                  top: height * 0.05
+                ),
+                child: Container(
+                  height: height * 0.26,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(20),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black26,
+                        blurRadius: 10,
+                        offset: Offset(0, 5),
+                      ),
+                    ],
+                  ),
+                  child: TicketsSummary(),
+                ),
+              ),
+            ),
+            // DashboardMenu - Con scroll
+            Expanded(
+              //flex: 2,
+              child: SingleChildScrollView(
+                padding: EdgeInsets.symmetric(horizontal: width * 0.05),
+                child: DashboardMenu(),
+              ),
+            ),
+          ],
+        );
+      },
+    ),
+  );
+        
+      
       /* appBar: AppBar(
         title: const Text('Products'),
         actions: [
@@ -32,7 +119,7 @@ class CentralScreen extends ConsumerWidget {
           )
         ],
       ), */
-      body:  Stack(
+     /*  body:  Stack(
         children: [
           _HeaderDashboad(user),
           Positioned(
@@ -57,8 +144,8 @@ class CentralScreen extends ConsumerWidget {
         
           //Expanded(child: DashboardMenu())
         ],
-      )
-    );
+      ) */
+    
   }
 }
 
